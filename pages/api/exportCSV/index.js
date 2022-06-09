@@ -4,11 +4,32 @@ const fs = require('fs')
 
 export default (req, res) => {
   
-  let text = "INDEX;NOME;FACEBOOK;LINKEDIN;INSTAGRAM;TWITTER;GITHUB"
+  let text = "index;nome;bio;profilePic;"
 
   users.map(( item, index ) => {
-    text += `\n${index};${item.name};${item.facebook};${item.linkedIn};${item.instagram};${item.twitter};${item.github}`
+    item.socialNetwork.map(( item2, index2 ) => {
+      text += `${item2.icon};`
+    })
   })
+
+  text += "\n"
+
+  users.map(( item, index ) => {
+    text += `${index};${item.name};${item.bio};${item.profilePic};`
+    item.socialNetwork.map(( item2, index2 ) => {
+      let url = item2.url ? item2.url : ""
+      text += `${url};`
+    })
+
+    text += "\n"
+  })
+  // users.map(( item, index ) => {
+  //   text += `\n${index};${item.name};`
+  //   item.socialNetwork.map(( item2, index2 ) => {
+  //     let url = item2.
+  //     text += `${url};`
+  //   })
+  // })
 
   try {
     fs.writeFileSync('users.csv', text);
