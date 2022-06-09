@@ -11,6 +11,7 @@ function Collapse(props){
   let r = (Math.random() + 1).toString(36).substring(7);
   const id = props.id ?? r
   const [ expand, setExpand ] = useState( false )
+  const [ baseUrl, setBaseUrl ] = useState( null )
 
   useEffect(() => {
     if( document.getElementById(id) )
@@ -19,11 +20,18 @@ function Collapse(props){
     }
   }, [ expand ])
 
+  useEffect(() => {
+    if( window.location && !baseUrl)
+    {
+      setBaseUrl( window.location.origin )
+    }
+  }, [ baseUrl ])
+
   return(
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', background: 'red', height: 'max-content'}}>
       <span onClick={() => setExpand(!expand)}>{title}</span>
       <div className={qrCodeStyles.container} {...props} id={id}>
-        <QRCode value={url} size={100}  />
+        <QRCode value={`${baseUrl}${url}`} size={100}  />
       </div>
     </div>
   )
