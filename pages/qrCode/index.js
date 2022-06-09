@@ -3,20 +3,24 @@ import qrCodeStyles from '../../styles/QrCode.module.css'
 import { useState, useEffect } from 'react'
 import QRCode from "react-qr-code";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
+import Header from '../../Components/Header';
+import Content from '../../Components/Content'
+import Footer from '../../Components/Footer';
 
-
-function Collapse(props){
+function Expand(props){
   const { title, url } = props
-  let r = (Math.random() + 1).toString(36).substring(7);
-  const id = props.id ?? r
+  let r           = (Math.random() + 1).toString(36).substring(7);
+  const id        = props.id ?? r
   const [ expand, setExpand ] = useState( false )
   const [ baseUrl, setBaseUrl ] = useState( null )
 
   useEffect(() => {
-    if( document.getElementById(id) )
+
+    let containerDocument = document.getElementById(id)
+  
+    if( containerDocument )
     {
-      document.getElementById(id).style.setProperty('display', expand ? 'flex' : 'none')
-      
+      containerDocument.style.setProperty('display', expand ? 'flex' : 'none')
     }
   }, [ expand ])
 
@@ -35,15 +39,15 @@ function Collapse(props){
       </section>
       <div className={qrCodeStyles.container} {...props} id={id}>
         <section style={{ height: 'max-content'}}>
-          <QRCode value={`${baseUrl}${url}`} size={100} />
+          <QRCode value={`${baseUrl}${url}`} size={100} style={{display: expand ? 'initial' : 'none'}}/>
         </section>
       </div>
     </div>
   )
 }
 
-export default function Codes() {
-  const [ opened, setOpened ] = useState({})
+function Users()
+{
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
@@ -53,27 +57,25 @@ export default function Codes() {
 
   }, [ ])
 
-  useEffect(() => {
-    const teste = userData.reduce(( result, index ) => ({ ...result, [index.id]: false }), {})
-    setOpened( teste )
-  }, [ userData.length ])
+  return(
+    userData.map(( item, index ) => {
+      return <Expand title={item.name} key={item.id} url={`/users/${item.id}`}/>
+    })
+  )
+  
+}
+
+export default function Codes() {
 
   return (
     <div id="dark" className={styles.container}>
-      <header className={styles.header}>
-        <span>Desafio <a href={"https://unitok.com/"} className={styles.unitok} target={"_blank"} rel="noreferrer">Unitok</a>!</span>
-      </header>
-      <section className={styles.content}>
+      <Header />
+      <Content>
         <section className={qrCodeStyles.content}>
-        {
-          userData.map(( item, index ) => {
-            return <Collapse title={item.name} key={item.id} url={`/users/${item.id}`}/>
-          })
-        }
+          <Users />
         </section>
-     
-      </section>
-      <footer className={styles.footer}>Feito com ❤️ por William Rodrigues</footer>
+      </Content>
+      <Footer />
     </div>
   )
 }
