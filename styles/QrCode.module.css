@@ -1,0 +1,16 @@
+.container{
+    background:grey;
+    animation: increase 5s forwards;
+    display: none;
+}
+
+
+@keyframes increase{
+    from{ height: 0vh; }
+    to{ height: 50vh; }
+}
+
+@keyframes fade{
+    from{ display: none; }
+    to{ display: initial; }
+}

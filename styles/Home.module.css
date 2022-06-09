@@ -1,0 +1,116 @@
+.container{
+  height: 100vh;
+  width:100vw;
+  font-family: 'Rubik', sans-serif;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.unitok{
+  color:rgb(255, 76, 96);
+}
+.header{
+  height: 20%;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+}
+
+.content{
+  height: 70%;
+}
+
+.footer{
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(255, 76, 96);
+  padding:5px;
+  font-weight: 500;
+}
+
+.options{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+
+.button{
+  
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  
+  text-align: left;
+  flex-direction: column;
+  gap:15px;
+  width: 300px;
+  height: max-content;
+  min-height: 200px;
+  animation: fadeInUp 1s ease-in-out;
+  border-radius: 3px;
+  
+}
+
+.title{
+  width: 100%;
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.description{
+  letter-spacing: 1.5px;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.button:hover{
+  border: 1px solid rgb(255, 76, 96);
+  color: rgb(255, 76, 96);
+  transition: all 0.5s ease-in-out;
+  transform: scale(1.1);
+}
+
+.button, #dark{
+  background: rgb(48, 47, 78) !important;
+  
+  
+}
+@keyframes fadeInUp{
+  0% {
+    opacity: 0;
+    transform: translate3d(0,100%,0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+
+@media screen and (max-width:767px)
+{
+  .header{
+    font-size: 2rem;
+  }
+
+}
