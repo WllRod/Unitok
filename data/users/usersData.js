@@ -1,19 +1,11 @@
 const users = [
-	{
-    id: 1,
-    name: 'John Doe',
-    facebook: null,
-    linkedIn: null,
-    instagram: null,
-    twitter: null,
-    github: null
-  },
+	
   {
-    id: 2,
+    id: 1,
     name: 'Mike Wazowski',
-    facebook: null,
-    linkedIn: null,
-    instagram: null,
+    facebook: 'https://pt-br.facebook.com/MonstersIncMikeWazowski/',
+    linkedIn: 'https://br.linkedin.com/in/mike-wazowski-15100991',
+    instagram: 'https://www.instagram.com/mike_wazowskki/',
     twitter: null,
     github: null
   }

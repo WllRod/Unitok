@@ -14,10 +14,23 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  overflow: hidden;
 }
 
 * {
   box-sizing: border-box;
+}
+*::-webkit-scrollbar{
+  width: 5px;
+}
+*::-webkit-scrollbar-thumb{
+  background-color: rgb(255, 76, 96);
+  border-radius: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track{
+  margin-top: 7px;
+  margin-bottom: 7px;
 }
 
 #light{

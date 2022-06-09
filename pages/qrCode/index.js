@@ -1,9 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/Home.module.css'
 import qrCodeStyles from '../../styles/QrCode.module.css'
 import { useState, useEffect } from 'react'
 import QRCode from "react-qr-code";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from 'react-icons/ai'
 
 
 function Collapse(props){
@@ -16,7 +15,8 @@ function Collapse(props){
   useEffect(() => {
     if( document.getElementById(id) )
     {
-      document.getElementById(id).style.setProperty('display', expand ? 'initial' : 'none')
+      document.getElementById(id).style.setProperty('display', expand ? 'flex' : 'none')
+      
     }
   }, [ expand ])
 
@@ -28,10 +28,15 @@ function Collapse(props){
   }, [ baseUrl ])
 
   return(
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', background: 'red', height: 'max-content'}}>
-      <span onClick={() => setExpand(!expand)}>{title}</span>
+    <div className={qrCodeStyles.expandContainer}>
+      <section onClick={() => setExpand(!expand)} className={qrCodeStyles.title}>
+        <span>{title}</span>
+        { expand ? <AiOutlineArrowUp className={qrCodeStyles.arrow}/> : <AiOutlineArrowDown className={qrCodeStyles.arrow}/>}
+      </section>
       <div className={qrCodeStyles.container} {...props} id={id}>
-        <QRCode value={`${baseUrl}${url}`} size={100}  />
+        <section style={{ height: 'max-content'}}>
+          <QRCode value={`${baseUrl}${url}`} size={100} />
+        </section>
       </div>
     </div>
   )
@@ -59,11 +64,13 @@ export default function Codes() {
         <span>Desafio <a href={"https://unitok.com/"} className={styles.unitok} target={"_blank"} rel="noreferrer">Unitok</a>!</span>
       </header>
       <section className={styles.content}>
+        <section className={qrCodeStyles.content}>
         {
           userData.map(( item, index ) => {
             return <Collapse title={item.name} key={item.id} url={`/users/${item.id}`}/>
           })
         }
+        </section>
      
       </section>
       <footer className={styles.footer}>Feito com ❤️ por William Rodrigues</footer>
