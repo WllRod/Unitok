@@ -37,7 +37,7 @@ export default function Home() {
         <section className={styles.options}>
           {
             data.map(( item, index ) => {
-              console.log( item )
+             
               return(
                 <RedirectBox
                   url={item.url}
