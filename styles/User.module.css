@@ -6,7 +6,7 @@
     align-items: center;
     gap: 20px;
     position: absolute;
-    top:-50px;
+    top:-20px;
 }
 
 .name{
@@ -17,4 +17,22 @@
 .bio{
     font-size: 1.2rem;
     font-weight: 300;
+}
+
+.background_container{
+    background: rgb(48, 47, 78);
+    position: relative;
+    width: 70%;
+    height: 80%;
+}
+
+@media screen and (max-width:767px)
+{
+    .background_container{
+        width: 90%;
+    }
+
+    .content{
+        top: -40px;
+    }
 }

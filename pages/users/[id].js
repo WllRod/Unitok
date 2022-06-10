@@ -18,7 +18,7 @@ const iconStyle = {
 function ProfilePicture( { url } )
 {
   return(
-    <div style={{ borderRadius: '50%', background: 'red', width: '200px', height: '200px', background: 'rgb(255, 76, 96)', padding: '2px'}}>
+    <div style={{ borderRadius: '50%', width: '150px', height: '150px', background: 'rgb(255, 76, 96)', padding: '2px'}}>
       <img src={url} style={{ width: '100%', height: '100%', borderRadius: '50%'}}/>
     </div>
   )
@@ -30,7 +30,7 @@ function SocialNetwork({ socialNetworkList })
   {
     
     return(
-      <div style={{ display: 'flex', flexDirection: 'row', gap: '20px'}}>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '20px',  maxWidth: '200px', height: 'max-content',flexWrap: 'wrap'}}>
         {
           socialNetworkList.map(( item, index ) => {
             let icon = Icons( item.icon )
@@ -74,7 +74,7 @@ export default function User() {
       <Content>
         
           <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <div style={{ background: 'rgb(48, 47, 78)', position: 'relative', width: '70%', height: '80%'}}>
+            <div className={UserStyle.background_container}>
               <section className={UserStyle.content}>
                 <ProfilePicture url={userData.profilePic}/>
                 <span className={UserStyle.name}>{userData.name}</span>
